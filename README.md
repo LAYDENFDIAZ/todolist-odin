@@ -3,6 +3,7 @@ odin project todo list
 CREATE MOCK UI
 
 create MODELS
+USE MVC
 
 let todoItem = {
 title: "Title of the Task",
