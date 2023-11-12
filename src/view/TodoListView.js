@@ -19,10 +19,10 @@ export default class TodoListView {
       // should pass the values to the controller
 
       this.controller.todoItemSubmitted({
-        title,
-        descrtiption,
-        dueDate,
-        priority,
+        todoTitle,
+        todoDescription,
+        todoDueDate,
+        todoPriority,
       });
 
       //   const newTodo = new Todo(
@@ -33,12 +33,11 @@ export default class TodoListView {
       //   );
     });
   }
-  render = (todoListControllers) => {
+  render = (todoControllers) => {
     this.TODO_LIST.innerHTML = "";
 
-    for (const todoController of todoListControllers) {
-      const todoView = new TodoView(todoController);
-      todoView.render(this.TODO_LIST);
+    for (const todoController of todoControllers) {
+      todoController.render(this.TODO_LIST);
     }
   };
 }
