@@ -3,6 +3,7 @@ import Todo from "./todo.js";
 export default class TodoView {
   constructor(TodoViewController) {
     //controller will be passed to the view
+
     this.TodoViewController = TodoViewController;
 
     this.CONTAINER = document.createElement("li");

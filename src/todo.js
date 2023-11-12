@@ -4,6 +4,19 @@ export default class Todo {
   static PRIORITY_MEDIUM = 2;
   static PRIORITY_LOW = 3;
 
+  static priorityFromString = () => {
+    switch (this.priority) {
+      case Todo.PRIORITY_HIGH:
+        return 1;
+      case Todo.PRIORITY_MEDIUM:
+        return 2;
+      case Todo.PRIORITY_LOW:
+        return 3;
+      default:
+        return 3;
+    }
+  };
+
   constructor(title, description, dueDate, priority) {
     this.id = Math.random().toString(36).substring(2, 9);
     this.title = title;

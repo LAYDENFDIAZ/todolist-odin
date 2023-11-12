@@ -2,69 +2,45 @@ import Todo from "./todo.js";
 import TodoController from "./TodoController.js";
 import TodoView from "./TodoView.js";
 
+const NEW_TODO_FORM = document.querySelector("#new-todo-form");
 const TODO_LIST = document.querySelector("#todo-list");
 
-const todos = [
-  new Todo(
-    "Learn JavaScript",
-    "Complete exercises in chapter 4",
-    "12/01/2023",
-    Todo.PRIORITY_HIGH
-  ),
-  new Todo(
-    "Grocery Shopping",
-    "Buy milk, eggs, and bread",
-    "11/15/2023",
-    Todo.PRIORITY_MEDIUM
-  ),
-  new Todo(
-    "Read 'Effective Engineer'",
-    "Read first three chapters",
-    "11/25/2023",
-    Todo.PRIORITY_LOW
-  ),
-  new Todo(
-    "Morning Jog",
-    "Jog around the park for 30 minutes",
-    "11/18/2023",
-    Todo.PRIORITY_MEDIUM
-  ),
-  new Todo(
-    "Watch React Tutorial",
-    "Complete the first 5 videos of the series",
-    "11/20/2023",
-    Todo.PRIORITY_HIGH
-  ),
-  new Todo("Call Mom", "Weekly catch-up call", "11/14/2023", Todo.PRIORITY_LOW),
-  new Todo(
-    "Prepare Meeting Agenda",
-    "Draft agenda for Monday's team meeting",
-    "11/17/2023",
-    Todo.PRIORITY_HIGH
-  ),
-  new Todo(
-    "Finish Painting",
-    "Complete landscape painting",
-    "12/05/2023",
-    Todo.PRIORITY_LOW
-  ),
-  new Todo(
-    "Check Car Tires",
-    "Inflate tires and check pressure",
-    "11/22/2023",
-    Todo.PRIORITY_MEDIUM
-  ),
-  new Todo(
-    "Organize Desk",
-    "Clean and organize work desk",
-    "11/19/2023",
-    Todo.PRIORITY_LOW
-  ),
-];
+NEW_TODO_FORM.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-for (const todo of todos) {
-  new TodoController(todo).render(TODO_LIST);
+  const FORM_ELEMENTS = event.target.elements;
+  const TODO_TITLE = FORM_ELEMENTS["todo-title"].value;
+  const TODO_DESCRIPTION = FORM_ELEMENTS["todo-description"].value;
+  const TODO_DUE_DATE = FORM_ELEMENTS["todo-due-date"].value;
+  const TODO_PRIORITY = FORM_ELEMENTS["todo-priority"].value;
+
+  const newTodo = new Todo(
+    TODO_TITLE,
+    TODO_DESCRIPTION,
+    TODO_DUE_DATE,
+    TODO_PRIORITY
+  );
+
+  todos.push(newTodo);
+  render();
+});
+
+let todos = [];
+
+function onTodoDeleteClicked(todoId) {
+  todos = todos.filter((todo) => todo.id !== todoId);
+  render();
 }
+
+const render = () => {
+  TODO_LIST.innerHTML = "";
+
+  for (const todo of todos) {
+    new TodoController(todo, onTodoDeleteClicked).render(TODO_LIST);
+  }
+};
+
+render();
 
 // const todoView = new TodoComponent(
 //   todoItem.title,

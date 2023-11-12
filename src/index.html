@@ -21,10 +21,20 @@
     <section>
       <h2>Add a New Todo</h2>
       <form id="new-todo-form">
-        <input type="text" id="todo-title" placeholder="Title" required />
-        <textarea id="todo-description" placeholder="Description"></textarea>
-        <input type="date" id="todo-due-date" />
-        <select id="todo-priority">
+        <input
+          type="text"
+          id="todo-title"
+          name="todo-title"
+          placeholder="Title"
+          required
+        />
+        <textarea
+          id="todo-description"
+          name="todo-description"
+          placeholder="Description"
+        ></textarea>
+        <input type="date" name id="todo-due-date" />
+        <select id="todo-priority" name="todo-priority">
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
