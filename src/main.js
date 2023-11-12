@@ -1,4 +1,5 @@
 import Todo from "./todo.js";
+import TodoController from "./TodoController.js";
 import TodoView from "./TodoView.js";
 
 const TODO_LIST = document.querySelector("#todo-list");
@@ -62,12 +63,7 @@ const todos = [
 ];
 
 for (const todo of todos) {
-  const todoView = new TodoView(this);
-  // displayTodo is a new object that has the same properties as todo
-  // but helps us to decouple the Todo class from the TodoView class
-  const displayTodo = { ...todo };
-  displayTodo.priority = todo.getPriorityText();
-  todoView.render(TODO_LIST, displayTodo);
+  new TodoController(todo).render(TODO_LIST);
 }
 
 // const todoView = new TodoComponent(

@@ -1,6 +1,9 @@
+import Todo from "./todo.js";
+
 export default class TodoView {
-  constructor(controller) {
-    this.controller = controller;
+  constructor(TodoViewController) {
+    //controller will be passed to the view
+    this.TodoViewController = TodoViewController;
 
     this.CONTAINER = document.createElement("li");
     this.CONTAINER.classList.add("todo");
@@ -22,6 +25,9 @@ export default class TodoView {
     this.BUTTON_DELETE = document.createElement("button");
     this.BUTTON_DELETE.classList.add("todo-delete");
     this.BUTTON_DELETE.textContent = "Delete";
+    this.BUTTON_DELETE.addEventListener("click", () => {
+      this.TodoViewController.deleteClicked();
+    });
 
     this.ACTIONS_CONTAINER.append(this.BUTTON_EDIT, this.BUTTON_DELETE);
   }

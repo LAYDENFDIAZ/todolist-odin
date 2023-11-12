@@ -1,10 +1,12 @@
-odin project todo list
+odin project todo list plan using mvc
 
 CREATE MOCK UI
-
-create MODELS
 USE MVC
 https://developer.mozilla.org/en-US/docs/Glossary/MVC
+
+REFRENCE IMAGE IN PRJ DIR
+
+create MODEL:
 
 models:
 let todoItem = {
@@ -19,4 +21,5 @@ notes: "Additional notes about the task",
 View:
 TODOVIEW
 
-reasearch set
+Controllers:
+TODOCONTROLLER
