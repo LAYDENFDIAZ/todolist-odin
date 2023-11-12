@@ -4,6 +4,9 @@ CREATE MOCK UI
 
 create MODELS
 USE MVC
+https://developer.mozilla.org/en-US/docs/Glossary/MVC
+
+models:
 
 let todoItem = {
 title: "Title of the Task",
@@ -12,3 +15,6 @@ dueDate: "YYYY-MM-DD", // e.g., "2023-11-10"
 priority: "low", // or "medium", "high"
 notes: "Additional notes about the task",
 };
+'
+
+reasearch set

@@ -6,19 +6,6 @@ export default class TodoComponent {
     this.priority = priority;
   }
 
-  getPriorityText = () => {
-    switch (this.priority) {
-      case Todo.PRIORITY_HIGH:
-        return "High";
-      case Todo.PRIORITY_MEDIUM:
-        return "Medium";
-      case Todo.PRIORITY_LOW:
-        return "Low";
-      default:
-        return "Unknown";
-    }
-  };
-
   render = (parent) => {
     // parent is a DOM element
     // <li class="todo">
@@ -46,6 +33,9 @@ export default class TodoComponent {
     const ACTIONS_CONTAINER = document.createElement("div");
     const BUTTON_EDIT = document.createElement("button");
     const BUTTON_DELETE = document.createElement("button");
+
+    BUTTON_EDIT.textContent = "Edit";
+    BUTTON_DELETE.textContent = "Delete";
 
     ACTIONS_CONTAINER.append(BUTTON_EDIT, BUTTON_DELETE);
     CONTAINER.append(TITLE, DESCRIPTION, DUE_DATE, PRIORITY, ACTIONS_CONTAINER);

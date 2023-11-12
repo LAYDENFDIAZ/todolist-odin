@@ -1,7 +1,7 @@
 import Todo from "./todo.js";
 import TodoComponent from "./TodoComponent.js";
 
-const TODO_LIST = document.querySelector(".todo-list");
+const TODO_LIST = document.querySelector("#todo-list");
 
 const todoItem = new Todo(
   "Todo Title",
@@ -10,6 +10,11 @@ const todoItem = new Todo(
   Todo.PRIORITY_HIGH
 );
 
-const todoView = new TodoComponent(todoItem);
+const todoView = new TodoComponent(
+  todoItem.title,
+  todoItem.description,
+  todoItem.dueDate,
+  todoItem.getPriorityText()
+);
 
 todoView.render(TODO_LIST);
