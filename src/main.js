@@ -1,20 +1,78 @@
 import Todo from "./todo.js";
-import TodoComponent from "./TodoComponent.js";
+import TodoView from "./TodoView.js";
 
 const TODO_LIST = document.querySelector("#todo-list");
 
-const todoItem = new Todo(
-  "Todo Title",
-  "Todo Description",
-  "Todo Due Date",
-  Todo.PRIORITY_HIGH
-);
+const todos = [
+  new Todo(
+    "Learn JavaScript",
+    "Complete exercises in chapter 4",
+    "12/01/2023",
+    Todo.PRIORITY_HIGH
+  ),
+  new Todo(
+    "Grocery Shopping",
+    "Buy milk, eggs, and bread",
+    "11/15/2023",
+    Todo.PRIORITY_MEDIUM
+  ),
+  new Todo(
+    "Read 'Effective Engineer'",
+    "Read first three chapters",
+    "11/25/2023",
+    Todo.PRIORITY_LOW
+  ),
+  new Todo(
+    "Morning Jog",
+    "Jog around the park for 30 minutes",
+    "11/18/2023",
+    Todo.PRIORITY_MEDIUM
+  ),
+  new Todo(
+    "Watch React Tutorial",
+    "Complete the first 5 videos of the series",
+    "11/20/2023",
+    Todo.PRIORITY_HIGH
+  ),
+  new Todo("Call Mom", "Weekly catch-up call", "11/14/2023", Todo.PRIORITY_LOW),
+  new Todo(
+    "Prepare Meeting Agenda",
+    "Draft agenda for Monday's team meeting",
+    "11/17/2023",
+    Todo.PRIORITY_HIGH
+  ),
+  new Todo(
+    "Finish Painting",
+    "Complete landscape painting",
+    "12/05/2023",
+    Todo.PRIORITY_LOW
+  ),
+  new Todo(
+    "Check Car Tires",
+    "Inflate tires and check pressure",
+    "11/22/2023",
+    Todo.PRIORITY_MEDIUM
+  ),
+  new Todo(
+    "Organize Desk",
+    "Clean and organize work desk",
+    "11/19/2023",
+    Todo.PRIORITY_LOW
+  ),
+];
 
-const todoView = new TodoComponent(
-  todoItem.title,
-  todoItem.description,
-  todoItem.dueDate,
-  todoItem.getPriorityText()
-);
+for (const todo of todos) {
+  const todoView = new TodoView(this);
+  // displayTodo is a new object that has the same properties as todo
+  // but helps us to decouple the Todo class from the TodoView class
+  const displayTodo = { ...todo };
+  displayTodo.priority = todo.getPriorityText();
+  todoView.render(TODO_LIST, displayTodo);
+}
 
-todoView.render(TODO_LIST);
+// const todoView = new TodoComponent(
+//   todoItem.title,
+//   todoItem.description,
+//   todoItem.dueDate,
+//   todoItem.getPriorityText()
+// );

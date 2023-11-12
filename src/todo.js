@@ -5,6 +5,7 @@ export default class Todo {
   static PRIORITY_LOW = 3;
 
   constructor(title, description, dueDate, priority) {
+    this.id = Math.random().toString(36).substring(2, 9);
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;

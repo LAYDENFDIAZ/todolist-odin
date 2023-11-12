@@ -7,7 +7,6 @@ USE MVC
 https://developer.mozilla.org/en-US/docs/Glossary/MVC
 
 models:
-
 let todoItem = {
 title: "Title of the Task",
 description: "A brief description of the task",
@@ -16,5 +15,8 @@ priority: "low", // or "medium", "high"
 notes: "Additional notes about the task",
 };
 '
+
+View:
+TODOVIEW
 
 reasearch set
