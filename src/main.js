@@ -1,50 +1,46 @@
-import Todo from "./todo.js";
-import TodoController from "./TodoController.js";
-import TodoView from "./TodoView.js";
+// Importing the necessary modules for MVC architecture
+import Todo from "./todo.js"; // Model
+import TodoController from "./TodoController.js"; // Controller
+import TodoList from "./model/TodoList.js"; // Model
+import TodoListView from "./view/TodoListView.js"; // View
+import TodoView from "./TodoView.js"; // View
+import TodoListController from "./controller/TodoListController.js";
 
-const NEW_TODO_FORM = document.querySelector("#new-todo-form");
-const TODO_LIST = document.querySelector("#todo-list");
+// Model instantiation: creating a new TodoList instance
+const todoList = new TodoList([]);
 
-NEW_TODO_FORM.addEventListener("submit", (event) => {
-  event.preventDefault();
+// View instantiation: creating a new TodoListView instance
+const TodoListController = new TodoListController(this);
 
-  const FORM_ELEMENTS = event.target.elements;
-  const TODO_TITLE = FORM_ELEMENTS["todo-title"].value;
-  const TODO_DESCRIPTION = FORM_ELEMENTS["todo-description"].value;
-  const TODO_DUE_DATE = FORM_ELEMENTS["todo-due-date"].value;
-  const TODO_PRIORITY = FORM_ELEMENTS["todo-priority"].value;
-
+// Controller logic: Function to handle new todo submission
+const newTodoSubmitted = (formData) => {
+  // Creating a new Todo object (Model) from the form data
   const newTodo = new Todo(
-    TODO_TITLE,
-    TODO_DESCRIPTION,
-    TODO_DUE_DATE,
-    TODO_PRIORITY
+    formData.title,
+    formData.description,
+    formData.dueDate,
+    Todo.priorityFromString(formData.priority)
   );
 
-  todos.push(newTodo);
+  // Invoking the render function to update the View
   render();
-});
+};
 
-let todos = [];
-
+// Controller logic: Function to handle todo deletion
 function onTodoDeleteClicked(todoId) {
-  todos = todos.filter((todo) => todo.id !== todoId);
-  render();
+  // Deleting a Todo from the TodoList (updating the Model)
+  todoList.delete(todoId);
+  // Re-rendering the View
+  todoListView.render(todoListTodos, onTodoDeleteClicked);
 }
 
 const render = () => {
-  TODO_LIST.innerHTML = "";
+  const todoControllers = todoList.todos.map((todo) => {
+    return new TodoController(todo, onTodoDeleteClicked);
+  });
 
-  for (const todo of todos) {
-    new TodoController(todo, onTodoDeleteClicked).render(TODO_LIST);
-  }
+  todoListView.render(todoControllers);
 };
+// Initial rendering of the View
 
 render();
-
-// const todoView = new TodoComponent(
-//   todoItem.title,
-//   todoItem.description,
-//   todoItem.dueDate,
-//   todoItem.getPriorityText()
-// );
